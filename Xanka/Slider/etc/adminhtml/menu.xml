@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Xanka_Slider extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category  Umc
+ * @package   Xanka_Slider
+ * @copyright 2015 Marius Strajeru
+ * @license   http://opensource.org/licenses/mit-license.php MIT License
+ * @author    Marius Strajeru <ultimate.module.creator@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Xanka_Slider::slideshow" title="Addon Slideshow" module="Xanka_Slider" sortOrder="200" resource="Xanka_Slider::slider" />
+		 <add id="Xanka_Slider::slideshow_list" title="Slidehow" module="Xanka_Slider" sortOrder="10" parent="Xanka_Slider::slideshow" action="slider/slideshow/" resource="Xanka_Slider::slideshows" />
+		 <add id="Xanka_Slider::slideshowdata_list" title="Slidehow Data" module="Xanka_Slider" sortOrder="20" parent="Xanka_Slider::slideshow" action="slider/slideshowdata/" resource="Xanka_Slider::slideshowdatas" />
+	</menu>
+</config>

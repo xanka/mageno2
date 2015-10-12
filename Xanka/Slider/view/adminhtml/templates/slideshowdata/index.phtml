@@ -1,0 +1,52 @@
+
+<?php
+/**
+ * @see \Xanka\Slider\Block\Adminhtml\Slider
+ */
+?>
+<div class = "grid content admin__data-grid-wrap">
+<div class="head page-main-actions "><a class="action-default primary page-actions-buttons " href="<?php echo  $this->getUrl('*/*/new')?>">Add new</a></div>
+	<table class = "data-grid">
+		<thead>
+			<tr>
+				<th class = "data-grid-th"><span>ID</span></th>
+				<th class = "data-grid-th"><span>Name</span></th>
+				<th class = "data-grid-th"><span>Slideshow Name</span></th>
+				<th class = "data-grid-th"><span>Image Url</span></th>
+				<th class = "data-grid-th"><span>Description</span></th>
+				<th class = "data-grid-th"><span>Active All Slide</span></th>
+				<th class = "data-grid-th"><span>Action</span></th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php $models = $this->getModel();  ?>		
+		<?php if($models -> count() > 0 ): ?>
+			<?php foreach($models as $model): ?> 						
+				<?php $objSlideshow = $this -> getSlideshowById($model->getSlideshowId()); ?>																		
+					<tr>
+						<td class="a-left"><?php echo $model->getId();  ?></td> 
+						<td class="a-left"><?php echo $model->getName(); ?></td>
+						<td class="a-left"><?php echo $objSlideshow -> getName();  ?></td>	
+						<td class="a-left"><?php echo $model->getImage(); ?></td>					
+						<td class="a-left"><?php echo $model->getDescription(); ?></td>
+						<td class="a-left"><?php if($model->getActiveAll() =="1") {echo "Yes";}else{echo "No";}?></td>							
+						<td class="a-left">					
+							<select onchange="onchangeAction(this.value);" name="action-grid" id="action-slideshow">
+								<option  selected > Select</option>
+								<option value="<?php echo  $this->getUrl('*/*/edit', ['entity_id' => $model->getId()]); ?>">Edit</option>
+								<option  value="<?php echo  $this->getUrl('*/*/delete', ['entity_id' => $model->getId()]); ?>">Delete</option>
+							</select>					
+						</td>
+					</tr>				
+			<?php endforeach; ?>
+		<?php else: ?>
+			<?php echo "we can find entity. "?>
+		<?php endif; ?>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+	function onchangeAction(url){
+		window.location = url;
+	}
+</script>

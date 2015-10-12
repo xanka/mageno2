@@ -1,0 +1,63 @@
+
+<div class="edit-slide">
+<?php $model = $this->getModelEdit();?>
+<?php $slideshows = $block -> getSlideshow( $model -> getSlideshowId());  ?>
+	<form enctype="multipart/form-data" id="edit_form_slideshow" method="post" action="<?php echo  $this->getUrl('*/*/save'); ?>">
+		<input type="text" hidden " name="entity_id" value="<?php echo $model -> getId(); ?>">
+		<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />		
+		<div class="admin__field field field-title  required _required">
+			<label class="label admin__field-label"> Name</label>
+			<div class="admin__field-control control">
+				<input type="text" class="" name="name" value="<?php echo $model -> getName(); ?>">
+			</div>		
+		</div>		
+		<div class="admin__field field field-title  required _required">
+			<label class="title  admin__field-label"> Slideshow: </label>
+			<select onChange ="myFunction() " id="slideshow_name" name="slideshow_id">
+				<?php if($model -> getSlideshowId()):?>
+					<option selected value="" name="slideshow_id"><?php echo $slideshows -> getName(); ?></option>
+				<?php endif;?>
+					<?php  foreach($slideshows as $slideshow ): ?>
+					<option value="<?php echo $slideshow -> getId(); ?>" name="slideshow_id"><?php echo $slideshow -> getName(); ?></option>
+					<?php endforeach; ?>				
+			</select>			
+		</div>		
+		<div class="admin__field field field-title  required _required">
+			<label class="title  admin__field-label"> Image Url: </label>
+			<input type="file" name="image" id="image_url" >
+			<div class="image-show" style="width:500px;height:228px; background-color:#ccc;"> <img style = "width: 100%; height: 100%;" src="<?php echo $model -> getImage(); ?>" alt="" ><?php if( !($model -> getImage())){echo "add image"; }; ?></div>
+		</div>		
+		<div class="admin__field field field-title  required _required">
+			<label class="title  admin__field-label"> Decription</label>
+			<textarea name = "description" rows="4" cols="50" style = "display: block; clear: both;">
+				<?php echo $model -> getDescription(); ?> 
+			</textarea>
+			<p id="demo"></p>
+		</div>		
+		<div class="admin__field field field-title  required _required">
+			<label class="title  admin__field-label"> Active All </label>
+			<select id="active_all" onchange = "functionActive(); " name = "active_all">
+				<option  value="<?php echo "0"; ?>">No</option>
+				<option  value="<?php echo "1"; ?>">Yes</option>
+			</select>
+		</div>
+		<div class="page-main-actions">
+			<input class="action-default primary" type="submit" name="save" value="Save">
+			<a class="action-default primary" href="<?php echo  $this->getUrl('*/*/delete',['_current' => true] ); ?>">Delete</a>
+			<a class="action-default primary" href="<?php echo  $this->getUrl('*/*/index' ); ?>">Back</a>
+		</div>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	function myFunction() {
+    var x = document.getElementById("slideshow_name").value;
+	}
+	function functionActive(){
+	 var x = document.getElementById("active_all").value;
+	}
+
+</script>
+
+	

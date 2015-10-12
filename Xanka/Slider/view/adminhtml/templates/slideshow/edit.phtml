@@ -1,0 +1,24 @@
+
+<div class="edit-slide">
+<?php $model = $this->getModelEdit();?>
+	<form id="edit_form_slideshow" method="post" action="<?php echo  $this->getUrl('*/*/save'); ?>">
+		<input type="text" hidden  name="slideshow_id" value="<?php echo $model -> getId(); ?>">
+		
+		<input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+		<div class="admin__field field field-title  required _required">
+			<label class="label admin__field-label"> Name</label>
+			<div class="admin__field-control control">
+				<input type="text" class="" name="name" value="<?php echo $model -> getName(); ?>">
+			</div>		
+		</div>	
+		<div class="head page-main-actions">
+		<input class="action-default primary" type="submit" name="save" value="Save">
+		<a class="action-default primary" href="<?php echo  $this->getUrl('*/*/delete',['_current' => true] ); ?>">Delete</a>
+		<a class="action-default primary" href="<?php echo  $this->getUrl('*/*/index' ); ?>">Back</a>
+		</div>
+	</form>
+</div>
+
+
+
+	
